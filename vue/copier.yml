@@ -1,0 +1,22 @@
+_templates_suffix: .jinja
+
+project_name:
+  type: str
+  help: Project name
+  default: "{{ _copier_conf.dst_path.name }}"
+project_slug:
+  type: str
+  default: "{{ project_name|lower|replace(' ', '-') }}"
+package_name:
+  type: str
+  default: "{{ project_slug }}"
+env_prefix:
+  type: str
+  help: Env var prefix for deploy script
+  default: "{{ project_name|upper|replace(' ', '_')|replace('-', '_') }}"
+author:
+  type: str
+  default: mcallzbl
+
+_tasks:
+  - "python scripts/init_git.py"
